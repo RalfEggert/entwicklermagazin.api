@@ -1,11 +1,14 @@
 <?php
 
+use Zend\Expressive\Application;
 use Zend\Expressive\Helper\ServerUrlMiddleware;
 use Zend\Expressive\Helper\UrlHelperMiddleware;
 use Zend\Expressive\Middleware\ImplicitHeadMiddleware;
 use Zend\Expressive\Middleware\ImplicitOptionsMiddleware;
 use Zend\Expressive\Middleware\NotFoundHandler;
 use Zend\Stratigility\Middleware\ErrorHandler;
+
+/** @var $app Application */
 
 /**
  * Setup middleware pipeline:

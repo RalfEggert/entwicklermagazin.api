@@ -1,4 +1,7 @@
 <?php
+
+use Zend\Expressive\Application;
+
 /**
  * Setup routes with a single request method:
  *
@@ -25,6 +28,8 @@
  *     'contact'
  * );
  */
+
+/** @var $app Application */
 
 $app->get('/', App\Action\HomePageAction::class, 'home');
 $app->get('/api/ping', App\Action\PingAction::class, 'api.ping');
