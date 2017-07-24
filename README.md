@@ -4,6 +4,9 @@ Beispielprojekt für Entwickler Magazin über APIs mit Zend\Expressive. Die Inst
 erfolgen per folgendem Befehl:
 
 ```
-composer create https://github.com/RalfEggert/entwicklermagazin.api
+git clone https://github.com/RalfEggert/entwicklermagazin.api
+cd entwicklermagazin.api
+composer install
+composer serve
 ```
 
