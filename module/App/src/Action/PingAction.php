@@ -7,8 +7,19 @@ use Interop\Http\ServerMiddleware\MiddlewareInterface as ServerMiddlewareInterfa
 use Zend\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Class PingAction
+ *
+ * @package App\Action
+ */
 class PingAction implements ServerMiddlewareInterface
 {
+    /**
+     * @param ServerRequestInterface $request
+     * @param DelegateInterface      $delegate
+     *
+     * @return JsonResponse
+     */
     public function process(ServerRequestInterface $request, DelegateInterface $delegate)
     {
         return new JsonResponse(['ack' => time()]);

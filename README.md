@@ -7,6 +7,7 @@ erfolgen per folgendem Befehl:
 git clone https://github.com/RalfEggert/entwicklermagazin.api
 cd entwicklermagazin.api
 composer install
+composer development-enable
 composer serve
 ```
 
