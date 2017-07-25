@@ -11,6 +11,8 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Check\ConfigProvider::class,
+
     // Include cache configuration
     new ArrayProvider($cacheConfig),
 
