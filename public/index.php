@@ -19,17 +19,13 @@ require APPLICATION_PATH . '/vendor/autoload.php';
 /**
  * Self-called anonymous function that creates its own scope and keep the global namespace clean.
  */
-call_user_func(function () {
-    /** @var ContainerInterface $container */
-    $container = require APPLICATION_PATH . '/config/container.php';
+call_user_func(
+    function () {
+        /** @var ContainerInterface $container */
+        $container = require APPLICATION_PATH . '/config/container.php';
 
-    /** @var Application $app */
-    $app = $container->get(Application::class);
-
-    // Import programmatic/declarative middleware pipeline and routing
-    // configuration statements
-    require APPLICATION_PATH . '/config/pipeline.php';
-    require APPLICATION_PATH . '/config/routes.php';
-
-    $app->run();
-});
+        /** @var Application $app */
+        $app = $container->get(Application::class);
+        $app->run();
+    }
+);
