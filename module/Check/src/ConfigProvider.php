@@ -2,6 +2,11 @@
 
 namespace Check;
 
+use Check\Action\CheckMethodAction;
+use Check\Router\RouterDelegatorFactory;
+use Zend\Expressive\Application;
+use Zend\ServiceManager\Factory\InvokableFactory;
+
 /**
  * Class ConfigProvider
  *
@@ -25,7 +30,13 @@ class ConfigProvider
     public function getDependencies()
     {
         return [
+            'delegators' => [
+                Application::class => [
+                    RouterDelegatorFactory::class,
+                ],
+            ],
             'factories'  => [
+                CheckMethodAction::class => InvokableFactory::class,
             ],
         ];
     }
