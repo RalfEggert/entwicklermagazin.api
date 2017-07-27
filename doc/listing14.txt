@@ -9,7 +9,7 @@ use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
-class GetEntityAction implements MiddlewareInterface
+class PutEntityAction implements MiddlewareInterface
 {
     /** @var  EntityManager */
     private $entityManager;
@@ -27,12 +27,23 @@ class GetEntityAction implements MiddlewareInterface
 
         $id = $request->getAttribute('id');
 
+        $putData = (array) json_decode($request->getBody()->getContents());
+
         /** @var Customer $customer */
         $customer = $customerRepository->find($id);
 
         if (!$customer) {
             return new JsonResponse([], 404);
         }
+
+        $customer->update(
+            $putData['first_name'],
+            $putData['last_name'],
+            $putData['country']
+        );
+
+        $this->entityManager->persist($customer);
+        $this->entityManager->flush();
 
         return new JsonResponse(['entity' => $customer]);
     }

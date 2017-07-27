@@ -9,7 +9,7 @@ use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
-class GetEntityAction implements MiddlewareInterface
+class DeleteEntityAction implements MiddlewareInterface
 {
     /** @var  EntityManager */
     private $entityManager;
@@ -34,6 +34,9 @@ class GetEntityAction implements MiddlewareInterface
             return new JsonResponse([], 404);
         }
 
-        return new JsonResponse(['entity' => $customer]);
+        $this->entityManager->remove($customer);
+        $this->entityManager->flush();
+
+        return new JsonResponse([], 204);
     }
 }

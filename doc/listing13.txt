@@ -9,7 +9,7 @@ use Interop\Http\ServerMiddleware\MiddlewareInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
-class GetEntityAction implements MiddlewareInterface
+class PostEntityAction implements MiddlewareInterface
 {
     /** @var  EntityManager */
     private $entityManager;
@@ -23,17 +23,18 @@ class GetEntityAction implements MiddlewareInterface
         ServerRequestInterface $request,
         DelegateInterface $delegate
     ) {
-        $customerRepository = $this->entityManager->getRepository(Customer::class);
+        $postData = (array)json_decode($request->getBody()->getContents());
 
-        $id = $request->getAttribute('id');
+        $customer = new Customer(
+            null,
+            $postData['first_name'],
+            $postData['last_name'],
+            $postData['country']
+        );
 
-        /** @var Customer $customer */
-        $customer = $customerRepository->find($id);
+        $this->entityManager->persist($customer);
+        $this->entityManager->flush();
 
-        if (!$customer) {
-            return new JsonResponse([], 404);
-        }
-
-        return new JsonResponse(['entity' => $customer]);
+        return new JsonResponse(['entity' => $customer], 201);
     }
 }
