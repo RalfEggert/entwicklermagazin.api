@@ -2,6 +2,10 @@
 
 namespace Customer;
 
+use Customer\Action\AbstractActionFactory;
+use Customer\Action\GetCollectionAction;
+use Customer\Action\GetEntityAction;
+use Customer\Action\PostEntityAction;
 use Customer\Router\RouterDelegatorFactory;
 use Zend\Expressive\Application;
 
@@ -34,6 +38,9 @@ class ConfigProvider
                 ],
             ],
             'factories'  => [
+                GetCollectionAction::class => AbstractActionFactory::class,
+                GetEntityAction::class     => AbstractActionFactory::class,
+                PostEntityAction::class    => AbstractActionFactory::class,
             ],
         ];
     }
