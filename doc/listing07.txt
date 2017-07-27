@@ -1,0 +1,22 @@
+<?php
+
+namespace Customer;
+
+use Customer\Action\AbstractActionFactory;
+use Customer\Action\GetCollectionAction;
+
+class ConfigProvider
+{
+    /* ... */
+
+    public function getDependencies()
+    {
+        return [
+            /* ... */
+
+            'factories'  => [
+                GetCollectionAction::class => GetCollectionFactory::class,
+            ],
+        ];
+    }
+}
