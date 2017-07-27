@@ -43,10 +43,13 @@ class GetEntityAction implements MiddlewareInterface
 
         $id = $request->getAttribute('id');
 
-        return new JsonResponse(
-            [
-                'entity' => $customerRepository->find($id),
-            ]
-        );
+        /** @var Customer $customer */
+        $customer = $customerRepository->find($id);
+
+        if (!$customer) {
+            return new JsonResponse([], 404);
+        }
+
+        return new JsonResponse(['entity' => $customer]);
     }
 }

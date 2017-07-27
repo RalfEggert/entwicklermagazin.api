@@ -46,13 +46,13 @@ class DeleteEntityAction implements MiddlewareInterface
         /** @var Customer $customer */
         $customer = $customerRepository->find($id);
 
-        if ($customer) {
-            $this->entityManager->remove($customer);
-            $this->entityManager->flush();
-
-            return new JsonResponse([], 204);
-        } else {
+        if (!$customer) {
             return new JsonResponse([], 404);
         }
+
+        $this->entityManager->remove($customer);
+        $this->entityManager->flush();
+
+        return new JsonResponse([], 204);
     }
 }

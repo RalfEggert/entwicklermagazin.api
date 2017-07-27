@@ -48,19 +48,19 @@ class PutEntityAction implements MiddlewareInterface
         /** @var Customer $customer */
         $customer = $customerRepository->find($id);
 
-        if ($customer) {
-            $customer->update(
-                $putData['first_name'],
-                $putData['last_name'],
-                $putData['country']
-            );
-
-            $this->entityManager->persist($customer);
-            $this->entityManager->flush();
-
-            return new JsonResponse(['entity' => $customer]);
-        } else {
+        if (!$customer) {
             return new JsonResponse([], 404);
         }
+
+        $customer->update(
+            $putData['first_name'],
+            $putData['last_name'],
+            $putData['country']
+        );
+
+        $this->entityManager->persist($customer);
+        $this->entityManager->flush();
+
+        return new JsonResponse(['entity' => $customer]);
     }
 }
