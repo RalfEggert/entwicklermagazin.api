@@ -2,6 +2,9 @@
 
 namespace Customer;
 
+use Customer\Router\RouterDelegatorFactory;
+use Zend\Expressive\Application;
+
 /**
  * Class ConfigProvider
  *
@@ -25,6 +28,11 @@ class ConfigProvider
     public function getDependencies()
     {
         return [
+            'delegators' => [
+                Application::class => [
+                    RouterDelegatorFactory::class,
+                ],
+            ],
             'factories'  => [
             ],
         ];
