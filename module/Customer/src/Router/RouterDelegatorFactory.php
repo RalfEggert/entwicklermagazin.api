@@ -5,6 +5,7 @@ namespace Customer\Router;
 use Customer\Action\GetCollectionAction;
 use Customer\Action\GetEntityAction;
 use Customer\Action\PostEntityAction;
+use Customer\Action\PutEntityAction;
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Application;
 use Zend\ServiceManager\Factory\DelegatorFactoryInterface;
@@ -38,6 +39,7 @@ class RouterDelegatorFactory implements DelegatorFactoryInterface
         $app->get('/customer', GetCollectionAction::class, 'customer-get-collection');
         $app->get('/customer/{id}', GetEntityAction::class, 'customer-get-entity')->setOptions($idConstraint);
         $app->post('/customer', PostEntityAction::class, 'customer-post-entity');
+        $app->put('/customer/{id}', PutEntityAction::class, 'customer-put-entity')->setOptions($idConstraint);
 
         return $app;
     }

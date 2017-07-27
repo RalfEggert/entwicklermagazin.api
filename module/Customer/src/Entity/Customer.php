@@ -56,6 +56,18 @@ class Customer implements JsonSerializable
     }
 
     /**
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $country
+     */
+    public function update(string $firstName, string $lastName, string $country)
+    {
+        $this->firstName = $firstName;
+        $this->lastName  = $lastName;
+        $this->country   = $country;
+    }
+
+    /**
      * @return array
      */
     public function jsonSerialize(): array
