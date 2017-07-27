@@ -2,16 +2,8 @@
 
 namespace Check;
 
-/**
- * Class ConfigProvider
- *
- * @package Check
- */
 class ConfigProvider
 {
-    /**
-     * @return array
-     */
     public function __invoke()
     {
         return [
@@ -19,9 +11,6 @@ class ConfigProvider
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getDependencies()
     {
         return [
