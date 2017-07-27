@@ -47,7 +47,7 @@ class Customer implements JsonSerializable
      * @param string $lastName
      * @param string $country
      */
-    public function __construct(int $id, string $firstName, string $lastName, string $country)
+    public function __construct(int $id = null, string $firstName, string $lastName, string $country)
     {
         $this->id        = $id;
         $this->firstName = $firstName;
