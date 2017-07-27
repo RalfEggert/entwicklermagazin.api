@@ -11,6 +11,7 @@ $cacheConfig = [
 ];
 
 $aggregator = new ConfigAggregator([
+    \Customer\ConfigProvider::class,
     \Check\ConfigProvider::class,
 
     // Include cache configuration
