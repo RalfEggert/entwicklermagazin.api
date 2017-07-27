@@ -2,6 +2,7 @@
 
 namespace Customer\Router;
 
+use Customer\Action\DeleteEntityAction;
 use Customer\Action\GetCollectionAction;
 use Customer\Action\GetEntityAction;
 use Customer\Action\PostEntityAction;
@@ -40,6 +41,7 @@ class RouterDelegatorFactory implements DelegatorFactoryInterface
         $app->get('/customer/{id}', GetEntityAction::class, 'customer-get-entity')->setOptions($idConstraint);
         $app->post('/customer', PostEntityAction::class, 'customer-post-entity');
         $app->put('/customer/{id}', PutEntityAction::class, 'customer-put-entity')->setOptions($idConstraint);
+        $app->delete('/customer/{id}', DeleteEntityAction::class, 'customer-delete-entity')->setOptions($idConstraint);
 
         return $app;
     }

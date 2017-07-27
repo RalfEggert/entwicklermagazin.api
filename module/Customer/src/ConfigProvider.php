@@ -3,6 +3,7 @@
 namespace Customer;
 
 use Customer\Action\AbstractActionFactory;
+use Customer\Action\DeleteEntityAction;
 use Customer\Action\GetCollectionAction;
 use Customer\Action\GetEntityAction;
 use Customer\Action\PostEntityAction;
@@ -43,6 +44,7 @@ class ConfigProvider
                 GetEntityAction::class     => AbstractActionFactory::class,
                 PostEntityAction::class    => AbstractActionFactory::class,
                 PutEntityAction::class     => AbstractActionFactory::class,
+                DeleteEntityAction::class  => AbstractActionFactory::class,
             ],
         ];
     }

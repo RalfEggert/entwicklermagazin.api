@@ -39,7 +39,7 @@ class PostEntityAction implements MiddlewareInterface
         ServerRequestInterface $request,
         DelegateInterface $delegate
     ) {
-        $postData = (array) json_decode($request->getBody()->getContents());
+        $postData = (array)json_decode($request->getBody()->getContents());
 
         $customer = new Customer(
             null,
@@ -51,11 +51,6 @@ class PostEntityAction implements MiddlewareInterface
         $this->entityManager->persist($customer);
         $this->entityManager->flush();
 
-        return new JsonResponse(
-            [
-                'entity' => $customer,
-            ],
-            201
-        );
+        return new JsonResponse(['entity' => $customer], 201);
     }
 }

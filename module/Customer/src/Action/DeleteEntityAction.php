@@ -10,17 +10,17 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Response\JsonResponse;
 
 /**
- * Class PutEntityAction
+ * Class DeleteEntityAction
  *
  * @package Customer\Action
  */
-class PutEntityAction implements MiddlewareInterface
+class DeleteEntityAction implements MiddlewareInterface
 {
     /** @var  EntityManager */
     private $entityManager;
 
     /**
-     * PutEntityAction constructor.
+     * DeleteEntityAction constructor.
      *
      * @param EntityManager $entityManager
      */
@@ -43,22 +43,14 @@ class PutEntityAction implements MiddlewareInterface
 
         $id = $request->getAttribute('id');
 
-        $putData = (array) json_decode($request->getBody()->getContents());
-
         /** @var Customer $customer */
         $customer = $customerRepository->find($id);
 
         if ($customer) {
-            $customer->update(
-                $putData['first_name'],
-                $putData['last_name'],
-                $putData['country']
-            );
-
-            $this->entityManager->persist($customer);
+            $this->entityManager->remove($customer);
             $this->entityManager->flush();
 
-            return new JsonResponse(['entity' => $customer]);
+            return new JsonResponse([], 204);
         } else {
             return new JsonResponse([], 404);
         }
